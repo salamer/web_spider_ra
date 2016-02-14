@@ -6,10 +6,10 @@ import re
 class zhihu_collection_spider():
 
     def __init__(self):
-        self.count=0
+        self.count=1500
 
     def find_all_pic(self):
-        url_list=["http://www.zhihu.com/collection/53719722?page="+str(i) for i in range(1,25)]
+        url_list=["http://www.zhihu.com/collection/53719722?page="+str(i) for i in range(6,25)]
         self.get_img(url_list)
 
 
@@ -53,3 +53,7 @@ class zhihu_collection_spider():
                 for chunk in r.iter_content():
                     fd.write(chunk)
             print "pic: %s " % url
+
+if __name__=="__main__":
+    crawler=zhihu_collection_spider()
+    crawler.find_all_pic()

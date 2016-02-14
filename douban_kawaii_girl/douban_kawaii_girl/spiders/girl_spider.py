@@ -50,7 +50,7 @@ class douban_kawaii_girl_spider(CrawlSpider):
 
         item=DoubanKawaiiGirlItem()
 
-        item['image_urls']=sel.xpath('//div[@class="topic-figure"]/img/@src').extract()
+        item['image_urls']=sel.xpath('//div[@class="topic-figure cc"]/img/@src').extract()
 
         print item['image_urls']
 
