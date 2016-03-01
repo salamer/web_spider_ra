@@ -6,6 +6,7 @@ import urllib
 import urllib2
 import re
 import gevent
+import time
 
 class zhihu_collection_spider():
 
@@ -29,7 +30,7 @@ class zhihu_collection_spider():
 
 #            img_list=soup.find_all("img")
 
-            reg=r'htt.*?\.png'
+            reg=r'htt.*?\.jpg'
 
             im_gre=re.compile(reg)
 
@@ -82,11 +83,12 @@ class zhihu_collection_spider():
 def download_single_pic(url,count):
     path="/Users/aljun/spider/glasses/"
 #    r=urllib.urlopen(url)
-    path=path+str(count)+'.png'
+    path=path+str(count)+'.jpg'
     urllib.urlretrieve(url,path)
     print "pic: %s " % url
 
 if __name__=="__main__":
+    start=time.time()
     crawler=zhihu_collection_spider()
 #    img_list=crawler.find_all_pic()
 #    print img_list
@@ -96,3 +98,4 @@ if __name__=="__main__":
     for count in range(len(img_list)):
         threads.append(gevent.spawn(download_single_pic,img_list[count],count))
     gevent.joinall(threads)
+    print "it cost %s" % (time.time()-start)
